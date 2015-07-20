@@ -1,16 +1,122 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html ng-app="cubeApp">
     <head>
-        <title>TODO supply a title</title>
+        <title>Cube Summation</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/theme.css">
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body ng-controller="ControllerCubeApp" role="document">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Cube Summation</a>
+                </div>
+            </div>
+        </nav>
+        <div role="main" class="container theme-showcase">
+
+            <div class="row">
+                <div class="col-md-4" style="border:1px solid #ddd;height:450px">
+                    <div class="page-header">
+                        <h1>Case Creator</h1>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-1">N</div>
+                        <div class="col-md-2"><input ng-model="n" size="3" ng-readonly="operations.length!==0" style="background-color:{{color}}"/></div>
+                        <div class="col-md-4">OPERATION</div>
+                        <div class="col-md-4">
+                            <select  ng-options="op.name for op in operationsTypes" ng-model="operation"></select>  
+                        </div>
+                    </div>
+                    <div ng-show="operation.id === 1" >
+                        <table class="table">
+                            <tr><th colspan="4">QUERY OPERATION</th></tr>
+                            <tr>
+                                <td>X1</td>
+                                <td><input ng-model="queryObject.x1" size="3"/></td>
+                                <td>X2</td>
+                                <td><input ng-model="queryObject.x2" size="3"/></td>
+                            </tr>
+                            <tr>
+                                <td>Y1</td>
+                                <td><input ng-model="queryObject.y1" size="3"/></td>
+                                <td>Y2</td>
+                                <td><input ng-model="queryObject.y2" size="3"/></td>
+                            </tr>
+                            <tr>
+                                <td>Z1</td>
+                                <td><input ng-model="queryObject.z1" size="3"/></td>
+                                <td>Z2</td>
+                                <td><input ng-model="queryObject.z2" size="3"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: right"><input type="button" ng-click="addQuery()" value="ADD QUERY" class="btn btn-sm btn-primary"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div ng-show="operation.id === 2">
+                        <table class="table">
+                            <tr><th colspan="2">UPDATE OPERATION</th></tr>
+                            <tr>
+                                <td>X</td>
+                                <td><input ng-model="updateObject.x" size="3"/></td>
+                            </tr>
+                            <tr>
+                                <td>Y</td>             
+                                <td><input ng-model="updateObject.y" size="3"/></td> 
+                            </tr>
+                            <tr>
+                                <td>Z</td>
+                                <td><input ng-model="updateObject.z" size="3"/></td>
+                            </tr>
+                            <tr>
+                                <td>VALUE</td>
+                                <td><input ng-model="updateObject.value" size="10"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: right"><input type="button" ng-click="addUpdate()" value="ADD UPDATE" class="btn btn-sm btn-primary"/></td>
+                            </tr>
+                        </table>
+                    </div>                    
+                </div>
+                <div class="col-md-2" style="border:1px solid #ddd;height: 450px">
+                    <div class="page-header">
+                        <h1>Case</h1>
+                    </div>
+                    <p>{{n + " " + operations.length}}</p>
+                    <div ng-repeat="op in operations">
+                        <p ng-if="op.type === 1">{{operationsTypes[0].name + " " + op.x1 + " " + op.x2 + " " + op.y1 + " " + op.y2 + " " + op.z1 + " " + op.z2}}</p>
+                        <p ng-if="op.type === 2">{{operationsTypes[1].name + " " + op.x + " " + op.y + " " + op.z + " " + op.value}}</p>
+                    </div>
+                    <input ng-click="addCase()" type="button" value="ADD CASE" class="btn btn-sm btn-primary"/>
+                </div>
+                <div class="col-md-2" style="border:1px solid #ddd;height:  450px">
+                    <div class="page-header"><h1>Input</h1></div>
+                    <p>{{cases.length}}</p>
+                    <div ng-repeat="c in cases">
+                        <p>{{c.n + " " + c.operations.length}}</p>
+                        <div ng-repeat="op in c.operations">
+                            <p>{{op}}</p>
+                        </div>
+                    </div>
+                    <input ng-click="calculate()" type="button" value="CALCULATE" class="btn btn-sm btn-primary"/>
+                </div>
+                <div class="col-md-2" style="border:1px solid #ddd;height:  450px">
+                    <div class="page-header"><h1>Output</h1></div>    
+                    <div ng-repeat="result in results ">
+                            <p>{{result}}</p>
+                    </div>
+                </div>
+            </div>
+            
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/angular-1.4.3/angular.min.js"></script>
+        <script src="js/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script src="js/imaginemos/app.js"></script>
     </body>
 </html>
