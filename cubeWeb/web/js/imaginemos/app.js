@@ -195,7 +195,7 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
          */
         $scope.calculate = function () {
             if ($scope.numCases > 0) {
-                $http.post("/CuboCalculator/webresources/Cube", $scope.cases).
+                $http.post("/cubeWeb/webresources/Cube", $scope.cases).
                         success(function (data, status, headers, config) {
                             $scope.results = data;
                         }).
