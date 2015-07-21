@@ -8,7 +8,7 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
         $scope.numCases = 0;
         $scope.numOperations = 0;
         $scope.operations = [];
-        $scope.results=[];
+        $scope.results = [];
         $scope.n;
         $scope.operationType = 1;
         $scope.operation = {};
@@ -30,7 +30,7 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
             $scope.numOperations++;
             $scope.queryObject = {type: 1, x1: "", x2: "", y1: "", y2: "", z1: "", z2: ""};
             $scope.color = '#ddd';
-            $scope.results=[];
+            $scope.results = [];
 
         };
         /**
@@ -138,7 +138,7 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
             $scope.numOperations++;
             $scope.updateObject = {type: 2, x: "", y: "", z: "", value: ""};
             $scope.color = '#ddd';
-            $scope.results=[];
+            $scope.results = [];
 
         };
         /**
@@ -195,7 +195,13 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
          */
         $scope.calculate = function () {
             if ($scope.numCases > 0) {
-
+                $http.post("/CuboCalculator/webresources/Cube", $scope.cases).
+                        success(function (data, status, headers, config) {
+                            $scope.results = data;
+                        }).
+                        error(function (data, status, headers, config) {
+                            $scope.alerts.push({type: 'danger', msg: 'Error:' + data});
+                        });
             } else {
                 $scope.alerts.push({type: 'danger', msg: ' case is required '});
             }
