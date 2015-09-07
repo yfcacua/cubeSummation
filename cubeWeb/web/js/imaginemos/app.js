@@ -18,7 +18,7 @@ cuboApp.controller("ControllerCubeApp", ['$scope', '$http', function ($scope, $h
         $scope.operationsTypes = [{id: 1, name: 'QUERY'}, {id: 2, name: 'UPDATE'}];
         $scope.alerts = [];
         /**
-         * funcion ecnargada de agregar una operacion de tipo consulta
+         * funcion encargada de agregar una operacion de tipo consulta
          * @returns {void}
          */
         $scope.addQuery = function () {

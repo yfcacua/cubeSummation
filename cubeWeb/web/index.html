@@ -12,24 +12,34 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Cube Summation</a>
+                    <a class="navbar-brand" href="https://www.hackerrank.com/challenges/cube-summation">Cube Summation</a>
                 </div>
             </div>
         </nav>
         <div role="main" class="container theme-showcase">
 
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout='2000'>
+                {{alert.msg}}
+            </alert>
+
             <div class="row">
-                <div class="col-md-4" style="border:1px solid #ddd;height:450px">
+                <div class="col-md-4" style="border:1px solid #ddd;height:500px">
                     <div class="page-header">
                         <h1>Case Creator</h1>
                     </div>
-                    <div class="row" >
-                        <div class="col-md-1">N</div>
-                        <div class="col-md-2"><input ng-model="n" size="3" ng-readonly="operations.length!==0" style="background-color:{{color}}"/></div>
-                        <div class="col-md-4">OPERATION</div>
-                        <div class="col-md-4">
-                            <select  ng-options="op.name for op in operationsTypes" ng-model="operation"></select>  
+                    <div class="row" style="margin-left: 5px;">
+                        <div class="row">
+                            <div class="col-md-4"> N (Dimension)</div>
+                            <div class="col-md-2"><input ng-model="n" size="3" ng-readonly="operations.length !== 0" style="background-color:{{color}}" type="number" min="1" max="100"/></div>
                         </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4"> ADD-OPERATION </div>
+                            <div class="col-md-2">
+                                <select  ng-options="op.name for op in operationsTypes" ng-model="operation"></select>  
+                            </div>
+                        </div>
+                        <br>
                     </div>
                     <div ng-show="operation.id === 1" >
                         <table class="table">
@@ -53,7 +63,9 @@
                                 <td><input ng-model="queryObject.z2" size="3"/></td>
                             </tr>
                             <tr>
-                                <td colspan="4" style="text-align: right"><input type="button" ng-click="addQuery()" value="ADD QUERY" class="btn btn-sm btn-primary"/></td>
+                                <td colspan="4" style="text-align: right">
+                                    <input type="button" ng-click="addQuery()" value="ADD QUERY" class="btn btn-sm btn-primary"/>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -74,15 +86,17 @@
                             </tr>
                             <tr>
                                 <td>VALUE</td>
-                                <td><input ng-model="updateObject.value" size="10"/></td>
+                                <td><input ng-model="updateObject.value" size="10" type="number"/></td>
                             </tr>
                             <tr>
-                                <td colspan="2" style="text-align: right"><input type="button" ng-click="addUpdate()" value="ADD UPDATE" class="btn btn-sm btn-primary"/></td>
+                                <td colspan="2" style="text-align: right">
+                                    <input type="button" ng-click="addUpdate()" value="ADD UPDATE" class="btn btn-sm btn-primary"/>
+                                </td>
                             </tr>
                         </table>
                     </div>                    
                 </div>
-                <div class="col-md-2" style="border:1px solid #ddd;height: 450px">
+                <div class="col-md-2" style="border:1px solid #ddd;height: 500px">
                     <div class="page-header">
                         <h1>Case</h1>
                     </div>
@@ -93,7 +107,7 @@
                     </div>
                     <input ng-click="addCase()" type="button" value="ADD CASE" class="btn btn-sm btn-primary"/>
                 </div>
-                <div class="col-md-2" style="border:1px solid #ddd;height:  450px">
+                <div class="col-md-2" style="border:1px solid #ddd;height:  500px">
                     <div class="page-header"><h1>Input</h1></div>
                     <p>{{cases.length}}</p>
                     <div ng-repeat="c in cases">
@@ -104,15 +118,14 @@
                     </div>
                     <input ng-click="calculate()" type="button" value="CALCULATE" class="btn btn-sm btn-primary"/>
                 </div>
-                <div class="col-md-2" style="border:1px solid #ddd;height:  450px">
+                <div class="col-md-2" style="border:1px solid #ddd;height:  500px">
                     <div class="page-header"><h1>Output</h1></div>    
-                    <div ng-repeat="result in results ">
-                            <p>{{result}}</p>
+                    <div ng-repeat="result in results">
+                        <p>{{result}}</p>
                     </div>
                 </div>
             </div>
-            
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/angular-1.4.3/angular.min.js"></script>

@@ -11,14 +11,11 @@ import com.imaginamos.util.OperationUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
+ * Clase encargada de procesar los casos de entrada y generar la respuesta
  *
- * @author listman
+ * @author Yerson Cacua
  */
 public class CubeDelegator {
 
@@ -31,8 +28,9 @@ public class CubeDelegator {
     }
 
     /**
-     * metodo encargado de realizar todas las operaciones que estan en lo casos 
+     * metodo encargado de realizar todas las operaciones que estan en lo casos
      * de entrada
+     *
      * @param cases
      * @return
      */

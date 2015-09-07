@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.imaginamos.operation;
 
 import com.imaginamos.model.Cube;
@@ -24,7 +19,7 @@ public class QueryOperation {
      *
      * @param cube
      * @param query
-     * @return
+     * @return total  
      */
     public Long ejecutar(Cube cube, Query query) {
         Long total = 0l;
@@ -39,12 +34,12 @@ public class QueryOperation {
     }
 
     /**
-     * metodo que perimite comparar si un valor esta en el rango
+     * metodo que permite comparar si un valor esta en el rango
      *
      * @param valor
      * @param limiteInferior
      * @param limiteSuperior
-     * @return
+     * @return true or false
      */
     private boolean between(long valor, long limiteInferior, long limiteSuperior) {
         return valor >= limiteInferior && valor <= limiteSuperior;

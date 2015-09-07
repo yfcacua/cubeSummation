@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.imaginamos.operation;
 
 import com.imaginamos.model.Point;
@@ -19,7 +14,7 @@ public class UpdateOperation {
     }
 
     /**
-     * metodo que acutaliza el valor del cubo
+     * metodo que actualiza el valor del cubo
      *
      * @param cubo
      * @param update
