@@ -79,12 +79,11 @@ public class CubeDelegatorTest {
         List<String> result = instance.processingCases(cases);
 
         System.out.println("Test testProcessingCaseOne");
-        System.out.println(expResult.toString());
-        System.out.println(result.toString());
 
         int c = 0;
         for (String _result : expResult) {
             assertEquals(expResult.get(c), result.get(c));
+            c++;
         }
 
     }
@@ -117,19 +116,18 @@ public class CubeDelegatorTest {
         //Valores esperados
         List<String> expResult = new ArrayList<>();
         expResult.add("0");
-        expResult.add("0");
+        expResult.add("1");
         expResult.add("1");
 
         //LLamado al metodo
         List<String> result = instance.processingCases(cases);
 
         System.out.println("Test testProcessingCaseTwo");
-        System.out.println(expResult.toString());
-        System.out.println(result.toString());
 
         int c = 0;
         for (String _result : expResult) {
             assertEquals(expResult.get(c), result.get(c));
+            c++;
         }
 
     }
@@ -182,19 +180,18 @@ public class CubeDelegatorTest {
         expResult.add("4");
         expResult.add("27");
         expResult.add("0");
-        expResult.add("0");
+        expResult.add("1");
         expResult.add("1");
 
         //LLamado al metodo
         List<String> result = instance.processingCases(cases);
 
         System.out.println("Test testProcessingCases");
-        System.out.println(expResult.toString());
-        System.out.println(result.toString());
 
         int c = 0;
         for (String _result : expResult) {
             assertEquals(expResult.get(c), result.get(c));
+            c++;
         }
 
     }
